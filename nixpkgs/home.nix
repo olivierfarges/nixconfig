@@ -138,6 +138,7 @@ in
                 coc-prettier
                 coc-html
                 coc-pairs
+                coc-discord-neovim
             ]; #}}}
 
             configure.customRC = '' "{{{

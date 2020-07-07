@@ -66,6 +66,16 @@ in {
         dependencies = [];
     };
 
+    "coc-discord-neovim" = buildVimPlugin {
+        name = "coc-discord-neovim";
+        src = fetchgit {
+            "url" = "https://github.com/BubbatheVTOG/coc-discord-neovim";
+            "rev" = "f081407e18b3458c1529eba7a8ae7ec82647fe8c";
+            "sha256" = "17qpqf0rlq6q1070wdh5cm7sv90g4pj19jffxldq20gmg20y691y";
+        };
+        dependencies = [];
+    };
+
 }
 
 # vim: foldmethod=marker shiftwidth=4:
