@@ -38,28 +38,32 @@ in
         mpv
     ];/*}}}*/
 
-    #keyboard layout/*{{{*/
+    #keyboard layout{{{
     home.keyboard = {
         layout = "us";
         variant = "dvorak";
-    };/*}}}*/
+    };#}}}
 
-#services/*{{{*/
-#services.picom = {
-#    enable = true;
-#    blur = true;
-#};
-/*}}}*/
+    #services{{{
+    #services.picom = {
+    #    enable = true;
+    #    blur = true;
+    #};
+    #}}}
 
-    programs = {/*{{{*/
-        git = {/*{{{*/
+    #programs{{{
+    programs = {
+
+        #git{{{
+        git = {
             enable = true;
             userName = "btwiusegentoo";
             userEmail = "66811008+btwiusegentoo@users.noreply.github.com";
         };
-/*}}}*/
+        #}}}
 
-        fish = {/*{{{*/
+        #fish{{{
+        fish = {
             enable = true;
             shellAbbrs = {
                 #Common commands
@@ -102,13 +106,15 @@ in
                 set fish_greeting
             '';
         };
-    /*}}}*/
+        #}}}
 
-        neovim = {/*{{{*/
+        #neovim{{{ 
+        neovim = {
             enable = true;
             viAlias = true;
             vimAlias = true;
             withPython3 = true;
+
             configure.plug.plugins = with pkgs.vimPlugins // plugins; [# {{{
                 coc-nvim
                 material-vim #kaicataldo/material.vim
@@ -141,7 +147,7 @@ in
             ]; #}}}
 
             configure.customRC = '' "{{{
-                let g:coc_global_extensions = ['coc-syntax', 'coc-emoji']
+                let g:coc_global_extensions = ['coc-python', 'coc-syntax', 'coc-emoji']
                 set modelines=5
                 syntax enable
                 filetype plugin on
@@ -282,15 +288,17 @@ in
                     return !col || getline('.')[col -1] =~# '\s'
                 endfunction
             '';# }}}
+
         };
-/*}}}*/
+        #}}}
 
-};
-/*}}}*/
+    };
+    #}}}
 
-    home.file = {/*{{{*/
+    # generate dotfiles{{{
+    home.file = {
 
-    # kitty/*{{{*/
+    # kitty{{{
     ".config/kitty/kitty.conf".text = ''
         # Palenight Colorscheme{{{
         # https://github.com/citizen428/kitty-palenight
@@ -331,7 +339,7 @@ in
         window_padding_width 4
         background_opacity 0.9
     '';
-/*}}}*/
+    #}}}
 
     # qutebrowser{{{
     ".config/qutebrowser/config.py".text = 
@@ -657,6 +665,7 @@ in
 
     ''; /*}}}*/
 
+    #Coc{{{
     ".config/nvim/coc-settings.json".text = ''
     {
 
@@ -695,9 +704,14 @@ in
     }
     '';
     };
-/*}}}*/
+# }}}
 
-    xsession = {/*{{{*/
+    #}}}
+
+    #xsession{{{
+    xsession = {
+
+        #i3wm{{{
         windowManager.i3 = let mod = "Mod4"; in {
             enable = true;
 
@@ -754,9 +768,12 @@ in
                 exec xrandr --output DVI-D-1 --scale-from 2560x1440
                 '';
         };
+# }}}
+
+
     };/*}}}*/
 
-    #Home Manager config/*{{{*/
+    #Home Manager config{{{
     # Home Manager needs a bit of information about you and the
     # paths it should manage.
     home.username = "btw";
