@@ -33,6 +33,7 @@ in
         neofetch
         pfetch
         unstable.qutebrowser
+        unstable.qt5.qtwebengine
         nodePackages.node2nix
         mpv
     ];/*}}}*/
@@ -44,10 +45,10 @@ in
     };/*}}}*/
 
 #services/*{{{*/
-services.picom = {
-    enable = true;
-    blur = true;
-};
+#services.picom = {
+#    enable = true;
+#    blur = true;
+#};
 /*}}}*/
 
     programs = {/*{{{*/
@@ -331,7 +332,7 @@ services.picom = {
     '';
 /*}}}*/
 
-    # Qutebrowser{{{
+    # qutebrowser{{{
     ".config/qutebrowser/config.py".text = 
     ''
         c.url.start_pages = ["https://btwiusegentoo.github.io/start.html"]
@@ -347,7 +348,7 @@ services.picom = {
         c.fonts.debug_console="11pt Monoid Nerd Font Mono"
         c.fonts.default_size="11pt"
         c.fonts.downloads="11pt Monoid Nerd Font Mono"
-        c.fonts.hints="12pt Monoid Nerd Font Mono"
+        c.fonts.hints="11pt Monoid Nerd Font Mono"
         c.fonts.keyhint="11pt Monoid Nerd Font Mono"
         c.fonts.messages.error="11pt Monoid Nerd Font Mono"
         c.fonts.messages.info="11pt Monoid Nerd Font Mono"
@@ -730,7 +731,7 @@ services.picom = {
     # You can update Home Manager without changing this value. See
     # the Home Manager release notes for a list of state version
     # changes in each release.
-    home.stateVersion = "20.09";
+    home.stateVersion = "20.03";
 
     nixpkgs.config.allowUnfree = true;/*}}}*/
 

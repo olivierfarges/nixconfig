@@ -1,3 +1,5 @@
+# nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
+
 { config, pkgs, ... }:
 
 let
