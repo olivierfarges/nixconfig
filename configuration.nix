@@ -4,6 +4,12 @@
 
 let
     unstable = import <nixpkgs-unstable> {};
+    my-python-packages = python-packages: with python-packages; [
+        jedi
+        pynvim
+        numpy
+    ];
+    python-with-my-packages = pkgs.python3.withPackages my-python-packages;
 
 in
 {
@@ -29,6 +35,7 @@ in
         nix-prefetch-git
         gnumake
         gcc
+        python-with-my-packages
     ];
 
 

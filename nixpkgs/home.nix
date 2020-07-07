@@ -141,7 +141,7 @@ in
             ]; #}}}
 
             configure.customRC = '' "{{{
-                let g:coc_global_extensions = ['coc-python', 'coc-syntax', 'coc-emoji']
+                let g:coc_global_extensions = ['coc-syntax', 'coc-emoji']
                 set modelines=5
                 syntax enable
                 filetype plugin on
