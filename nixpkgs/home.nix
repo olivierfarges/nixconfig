@@ -92,8 +92,8 @@ in
                 "vim" = "nvim";
                 "atom" = "nvim";
                 #config files alias
-                "chome" = "nvim ~/.config/nixpkgs/home.nix";
-                "cnix" = "sudoedit /etc/nixos/configuration.nix";
+                "chome" = "nvim ~/mygit/nixconfig/nixpkgs/home.nix";
+                "cnix" = "nvim ~/mygit/nixconfig/configuration.nix";
             };
 
             interactiveShellInit =

@@ -27,6 +27,8 @@ in
         home-manager
         fish
         nix-prefetch-git
+        gnumake
+        gcc
     ];
 
 
