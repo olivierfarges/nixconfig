@@ -683,6 +683,20 @@ in
 
     ''; /*}}}*/
 
+    #mpv{{{
+    ".config/mpv/input.conf".text = ''
+        h seek -10
+        j add volume -2
+        k add volume 2
+        l seek 10
+        Ctrl+l ab-loop
+    '';
+
+    ".config/mpv/mpv.conf".text = ''
+        volume=50
+    '';
+    # }}}
+
     #Coc{{{
     ".config/nvim/coc-settings.json".text = ''
     {
