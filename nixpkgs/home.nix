@@ -351,7 +351,7 @@ in
         color15  #fefefe
         #}}}
         font_family Monoid Nerd Font Mono
-        font_size 11
+        font_size 10
         disable_ligatures never
         cursor #fefefe
         window_padding_width 4
@@ -369,21 +369,21 @@ in
         c.scrolling.bar = 'always'
 
         # Fonts
-        c.fonts.completion.category="11pt Monoid Nerd Font Mono"
-        c.fonts.completion.entry="11pt Monoid Nerd Font Mono"
-        c.fonts.contextmenu="11pt Monoid Nerd Font Mono"
-        c.fonts.debug_console="11pt Monoid Nerd Font Mono"
-        c.fonts.default_size="11pt"
-        c.fonts.downloads="11pt Monoid Nerd Font Mono"
-        c.fonts.hints="11pt Monoid Nerd Font Mono"
-        c.fonts.keyhint="11pt Monoid Nerd Font Mono"
-        c.fonts.messages.error="11pt Monoid Nerd Font Mono"
-        c.fonts.messages.info="11pt Monoid Nerd Font Mono"
-        c.fonts.messages.warning="11pt Monoid Nerd Font Mono"
-        c.fonts.prompts="11pt Monoid Nerd Font Mono"
-        c.fonts.statusbar="11pt Monoid Nerd Font Mono"
-        c.fonts.tabs.selected="11pt Monoid Nerd Font Mono"
-        c.fonts.tabs.unselected="11pt Monoid Nerd Font Mono"
+        c.fonts.completion.category="10pt Monoid Nerd Font Mono"
+        c.fonts.completion.entry="10pt Monoid Nerd Font Mono"
+        c.fonts.contextmenu="10pt Monoid Nerd Font Mono"
+        c.fonts.debug_console="10pt Monoid Nerd Font Mono"
+        c.fonts.default_size="10pt"
+        c.fonts.downloads="10pt Monoid Nerd Font Mono"
+        c.fonts.hints="10pt Monoid Nerd Font Mono"
+        c.fonts.keyhint="10pt Monoid Nerd Font Mono"
+        c.fonts.messages.error="10pt Monoid Nerd Font Mono"
+        c.fonts.messages.info="10pt Monoid Nerd Font Mono"
+        c.fonts.messages.warning="10pt Monoid Nerd Font Mono"
+        c.fonts.prompts="10pt Monoid Nerd Font Mono"
+        c.fonts.statusbar="10pt Monoid Nerd Font Mono"
+        c.fonts.tabs.selected="10pt Monoid Nerd Font Mono"
+        c.fonts.tabs.unselected="10pt Monoid Nerd Font Mono"
 
         # mpv youtube
         config.bind('yd', 'spawn mpv {url}')
