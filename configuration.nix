@@ -74,6 +74,7 @@ in
         fonts = with pkgs; [
             nerdfonts
             san-francisco-font 
+            apple-color-emoji
         ];
     };
     /*}}}*/

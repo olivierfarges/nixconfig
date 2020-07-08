@@ -787,6 +787,23 @@ in
     '';
 # }}}
 
+    # Give highest priority to apple emoji {{{
+    ".config/fontconfig/conf.d/10-prefer-emoji.conf".text = ''
+        <?xml version="1.0"?>
+        <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+        <fontconfig>
+                <match target="pattern">
+                <test qual="any" name="family">
+                        <string>sans-serif</string>
+                </test>
+                <edit name="family" mode="prepend" binding="strong">
+                        <string>Apple Color Emoji</string>
+                </edit>
+                </match> 
+        </fontconfig>
+    '';
+# }}}
+
     };
     #}}}
 
@@ -871,7 +888,8 @@ in
     # changes in each release.
     home.stateVersion = "20.03";
 
-    nixpkgs.config.allowUnfree = true;/*}}}*/
+    nixpkgs.config.allowUnfree = true;
+    #}}}
 
 }
 # vim:ft=nix foldmethod=marker shiftwidth=4:
