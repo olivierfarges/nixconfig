@@ -369,6 +369,11 @@ in
         c.scrolling.bar = 'always'
 
         # Fonts
+        c.fonts.default_family="SFNS Diplay"
+        c.fonts.web.family.standard="SFNS Display"
+        c.fonts.web.family.serif="SFNS Display"
+        c.fonts.web.family.sans_serif="SFNS Display"
+        c.fonts.web.family.fixed="Monoid Nerd Font Mono"
         c.fonts.completion.category="10pt Monoid Nerd Font Mono"
         c.fonts.completion.entry="10pt Monoid Nerd Font Mono"
         c.fonts.contextmenu="10pt Monoid Nerd Font Mono"
@@ -792,14 +797,11 @@ in
         <?xml version="1.0"?>
         <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
         <fontconfig>
-                <match target="pattern">
-                <test qual="any" name="family">
-                        <string>sans-serif</string>
-                </test>
-                <edit name="family" mode="prepend" binding="strong">
-                        <string>Apple Color Emoji</string>
+            <match>
+                <edit name="family" mode="prepend">
+                    <string> Apple Color Emoji</string>
                 </edit>
-                </match> 
+            </match>
         </fontconfig>
     '';
 # }}}

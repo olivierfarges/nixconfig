@@ -72,6 +72,7 @@ in
         enableFontDir = true;
         enableGhostscriptFonts = true;
         fonts = with pkgs; [
+            corefonts
             nerdfonts
             san-francisco-font 
             apple-color-emoji
