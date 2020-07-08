@@ -735,9 +735,59 @@ in
 
     }
     '';
-    };
+    # }}}
+
+    #neofetch{{{
+    ".config/neofetch/config.conf".text = ''
+        print_info() {
+            info "OS" distro
+            info "Uptime" uptime
+            info "Packages" packages
+            info "Shell" shell
+            info "WM" wm
+            info "Terminal" term
+            info "CPU" cpu
+            info "Memory" memory
+
+            info cols
+        }
+        title_fqdn="off"
+        kernel_shorthand="on"
+        os_arch="on"
+        uptime_shorthand="on"
+        memory_percent="off"
+        package_managers="on"
+        shell_path="off"
+        shell_version="on"
+        speed_type="bios_limit"
+        speed_shorthand="off"
+        cpu_brand="on"
+        cpu_speed="on"
+        cpu_cores="logical"
+        cpu_temp="off"
+        refresh_rate="off"
+        de_version="off"
+        colors=(distro)
+        bold="on"
+        underline_enabled="on"
+        underline_char="-"
+        separator=" "
+        block_range=(0 15)
+        color_blocks="on"
+        block_width=3
+        block_height=1
+        col_offset="auto"
+        image_backend="ascii"
+        image_source="auto"
+        ascii_distro="auto"
+        ascii_colors=(distro)
+        ascii_bold="on"
+        gap=3
+        stdout="off"
+    '';
 # }}}
 
+    };
     #}}}
 
     #xsession{{{
