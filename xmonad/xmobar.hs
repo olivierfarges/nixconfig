@@ -1,9 +1,9 @@
-Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+Config { font = "xft:Monoid Nerd Font Mono:pixelsize=10:antialias=true:hinting=true"
        , additionalFonts = []
        , borderColor = "black"
        , border = TopB
-       , bgColor = "black"
-       , fgColor = "grey"
+       , bgColor = "#292d3e"
+       , fgColor = "#959dcb"
        , alpha = 255
        , position = Top
        , textOffset = -1

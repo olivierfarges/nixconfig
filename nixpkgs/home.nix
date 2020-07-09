@@ -39,6 +39,7 @@ in
         gitAndTools.diff-so-fancy
         fish
         binutils
+        killall
         discord
         git
         pavucontrol

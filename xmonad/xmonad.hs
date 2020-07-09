@@ -15,10 +15,10 @@ myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 myClickJustFocuses :: Bool
 myClickJustFocuses = False
-myBorderWidth   = 2
+myBorderWidth   = 4
 myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
-myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#ff0000"
+myNormalBorderColor  = "#fefefe"
+myFocusedBorderColor = "#f07178"
 
 myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
 
