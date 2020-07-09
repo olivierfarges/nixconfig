@@ -1,1 +1,2 @@
-# nixos config file
+# NixOS config files
+> home-manager + xmonad + neovim💛
