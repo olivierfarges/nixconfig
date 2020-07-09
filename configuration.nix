@@ -77,6 +77,7 @@ in
             nerdfonts
             san-francisco-font 
             apple-color-emoji
+            noto-fonts-cjk
         ];
     };
     /*}}}*/
