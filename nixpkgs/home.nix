@@ -1,12 +1,22 @@
 # nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
 # nix-channel --add https://github.com/rycee/home-manager/archive/release-20.03.tar.gz home-manager
 # nix-channel --update
+# It's better to setup swapfile and use cachix.
 
 { config, pkgs, lib, ... }:
 
 let
     plugins = pkgs.callPackage ./plugins.nix {};
     unstable = import <nixpkgs-unstable> {};
+    haskell-env = unstable.haskellPackages.ghcWithHoogle ( hp: with hp; [
+        xmonad
+        xmonad-contrib
+        xmonad-extras
+        apply-refact
+        ghcide
+        cabal-install
+        hlint
+    ]);
 
 in
 {
@@ -19,6 +29,7 @@ in
         dmenu
         htop
         ranger
+        cava
         xclip
         kitty
         lsd
@@ -36,7 +47,13 @@ in
         unstable.qt5.qtwebengine
         nodePackages.node2nix
         mpv
-    ];/*}}}*/
+        binutils
+        glibc
+        haskell-env
+        #misc
+        cowsay cmatrix espeak figlet
+    ];
+    #}}}
 
     #keyboard layout{{{
     home.keyboard = {
@@ -100,6 +117,7 @@ in
                 #config files alias
                 "chome" = "nvim ~/mygit/nixconfig/nixpkgs/home.nix";
                 "cnix" = "nvim ~/mygit/nixconfig/configuration.nix";
+                "chs" = "nvim ~/mygit/nixconfig/xmonad/xmonad.hs";
             };
 # }}}
 
@@ -115,6 +133,18 @@ in
                             sha256 = "0c5i7sdrsp0q3vbziqzdyqn4fmp235ax4mn4zslrswvn8g3fvdyh";
                         };
                     }
+
+                    ## It have bug that messes up color of agnoster-fish that I use.
+                    ## You can fix by installing once, set theme and uninstall by commenting out this.
+                    #{
+                        #name = "base16-fish";
+                        #src = pkgs.fetchFromGitHub {
+                            #owner = "tomyun";
+                            #repo = "base16-fish";
+                            #rev = "675d53a0dd1aed0fc5927f26a900f5347d446459";
+                            #sha256 = "0lp1s9hg682jwzqn1lgj5mrq5alqn9sqw75gjphmiwmciv147kii";
+                        #};
+                    #}
                 ];
 
             interactiveShellInit =
@@ -162,6 +192,9 @@ in
                 coc-html
                 coc-pairs
                 coc-discord-neovim
+                indenthaskell
+                vim-stylishask
+                haskell-vim
             ]; #}}}
 
             configure.customRC = '' "{{{
@@ -265,6 +298,8 @@ in
                 set signcolumn=yes
                 inoremap <silent><expr> <c-space> coc#refresh()
                 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+                nnoremap <leader> F :call CocAction('format')<CR>          " leader shift f
+                nmap <leader>qf <Plug>(coc-fix-current)
                 nmap <silent> [g <Plug>(coc-diagnostic-prev)
                 nmap <silent> ]g <Plug>(coc-diagnostic-next)
                 nmap <silent> gd <Plug>(coc-definition)
@@ -316,6 +351,8 @@ in
     # generate dotfiles{{{
     home.file = {
 
+    ".xmonad/xmonad.hs".source = ../xmonad/xmonad.hs;
+
     # kitty{{{
     ".config/kitty/kitty.conf".text = ''
         # Palenight Colorscheme{{{
@@ -355,7 +392,7 @@ in
         disable_ligatures never
         cursor #fefefe
         window_padding_width 4
-        background_opacity 0.9
+        background_opacity 1
     '';
     #}}}
 
@@ -737,9 +774,51 @@ in
         "typeParameter": "\uf278",
         "default": "\uf29c"
         },
-
+        "languageserver": {
+            "haskell": {
+            "command": "ghcide",
+            "args": [
+                "--lsp"
+            ],
+            "rootPatterns": [
+                ".stack.yaml",
+                ".hie-bios",
+                "BUILD.bazel",
+                "cabal.config",
+                "package.yaml"
+            ],
+            "filetypes": [
+                "hs",
+                "lhs",
+                "haskell"
+            ]
+            }
+        },
     }
     '';
+        ##haskell-language-server
+        #"languageserver": {
+        #"haskell": {
+            #"command": "haskell-language-server-wrapper",
+            #"args": ["--lsp"],
+            #"rootPatterns": [
+            #"*.cabal",
+            #"stack.yaml",
+            #"cabal.project",
+            #"package.yaml"
+            #],
+            #"filetypes": [
+            #"hs",
+            #"lhs",
+            #"haskell"
+            #],
+            #"initializationOptions": {
+            #"languageServerHaskell": {
+                    #}
+                #}
+            #}
+        #}
+
     # }}}
 
     #neofetch{{{
@@ -811,10 +890,26 @@ in
 
     #xsession{{{
     xsession = {
+        enable = true;
+        scriptPath = ".hm-xsession";
+
+        #xmonad{{{
+        windowManager.xmonad = {
+            enable = true;
+            enableContribAndExtras = true;
+            haskellPackages =
+                unstable.haskell.packages.ghc882;
+            extraPackages = haskellPackages: [
+                haskellPackages.xmonad-contrib
+                haskellPackages.xmonad-extras
+                haskellPackages.xmonad
+            ];
+        };
+# }}}
 
         #i3wm{{{
         windowManager.i3 = let mod = "Mod4"; in {
-            enable = true;
+            enable = false;
 
             config = {
                 keybindings = {/*{{{*/

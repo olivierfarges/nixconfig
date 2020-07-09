@@ -8,12 +8,12 @@ let
         jedi
         pynvim
         numpy
+        pip
     ];
     python-with-my-packages = pkgs.python3.withPackages my-python-packages;
 
 in
 {
-
     imports =
         [ # Include the results of the hardware scan.
         ./hardware-configuration.nix
@@ -36,6 +36,7 @@ in
         gnumake
         gcc
         python-with-my-packages
+        cachix
     ];
 
 
@@ -100,15 +101,6 @@ in
     # Enable the OpenSSH daemon.
     services.openssh.enable = true;
 
-    # Open ports in the firewall.
-    # networking.firewall.allowedTCPPorts = [ ... ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
-    # networking.firewall.enable = false;
-
-    # Enable CUPS to print documents.
-    # services.printing.enable = true;
-
     # Enable sound.
     sound.enable = true;
     hardware.pulseaudio.enable = true;
@@ -118,15 +110,35 @@ in
         autorun = true;
         layout = "us";
         xkbVariant = "dvorak";
-        desktopManager.xterm.enable = false;
-        displayManager.defaultSession = "none+i3";
+        desktopManager.session = [
+            {
+                name = "home-manager";
+                start = ''
+                    ${pkgs.runtimeShell} $HOME/.hm-xsession &
+                    waitPID=$!
+                '';
+            }
+        ];
+        #desktopManager.xterm.enable = false;
+        #displayManager.defaultSession = "none+xmonad";
         displayManager.lightdm = {
         enable = true;
         autoLogin.enable = true;
         autoLogin.user = "btw";
         };
-        windowManager.i3.enable = true;
-        windowManager.i3.package = pkgs.i3-gaps;
+        #windowManager.i3.enable = true;
+        #windowManager.i3.package = pkgs.i3-gaps;
+        #windowManager.xmonad = {
+            #enable = true;
+            #enableContribAndExtras = true;
+            #haskellPackages = 
+                #unstable.haskell.packages.ghc882;
+            #extraPackages = haskellPackages: [
+                #haskellPackages.xmonad-contrib
+                #haskellPackages.xmonad-extras
+                #haskellPackages.xmonad
+            #];
+        #};
         wacom.enable = true;
     };# }}}
 

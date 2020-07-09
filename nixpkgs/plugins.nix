@@ -76,6 +76,24 @@ in {
         dependencies = [];
     };
 
+    "ghcid" = buildVimPlugin {
+        name = "ghcid";
+        src = fetchgit {
+            "url" = "https://github.com/ndmitchell/ghcid";
+            "rev" = "e54c1ebcec8bf4313ef04a1c5f47ecdbb6d11db3";
+            "sha256" = "1bs07jjj3pgwdr81w8piph6wz73n0gwj3imbnd2za0jqxbshyzry";
+        };
+    };
+
+    "indenthaskell" = buildVimPlugin {
+        name = "indenthaskell";
+        src = fetchgit {
+            "url" = "https://github.com/vim-scripts/indenthaskell.vim";
+            "rev" = "17380713774ea4f3ca5da1de455126fa1cce82f7";
+            "sha256" = "1cs9qkn40fk3c8a9kvbdm3d6izf944awiagpmllkvlb4ci9m6lk7";
+        };
+    };
+
 }
 
 # vim: foldmethod=marker shiftwidth=4:

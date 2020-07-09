@@ -20,7 +20,12 @@
 
   boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/99152419-218c-457a-8dc9-47983844f52d";
 
-  swapDevices = [ ];
+  swapDevices = [ 
+    { device = "/swapfile";
+      priority = 100;
+      size = 8192;
+    }
+  ];
 
   nix.maxJobs = lib.mkDefault 16;
 }
