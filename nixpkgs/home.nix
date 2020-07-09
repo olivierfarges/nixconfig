@@ -14,6 +14,7 @@ let
         xmonad-extras
         apply-refact
         ghcide
+        stylish-haskell
         cabal-install
         hlint
     ]);
@@ -25,7 +26,7 @@ in
 
     # Packages to install{{{
     home.packages = with pkgs; [
-        feh
+        nitrogen
         dmenu
         htop
         ranger
@@ -52,6 +53,8 @@ in
         glxinfo
         glibc
         haskell-env
+        xmobar
+        unstable.picom
         #misc
         cowsay cmatrix espeak figlet
     ];
@@ -65,8 +68,8 @@ in
 
     #services{{{
     #services.picom = {
-    #    enable = true;
-    #    blur = true;
+        #enable = true;
+        #blur = true;
     #};
     #}}}
 
@@ -119,7 +122,8 @@ in
                 #config files alias
                 "chome" = "nvim ~/mygit/nixconfig/nixpkgs/home.nix";
                 "cnix" = "nvim ~/mygit/nixconfig/configuration.nix";
-                "chs" = "nvim ~/mygit/nixconfig/xmonad/xmonad.hs";
+                "cmonad" = "nvim ~/mygit/nixconfig/xmonad/xmonad.hs";
+                "cmobar" = "nvim ~/mygit/nixconfig/xmonad/xmobar.hs";
             };
 # }}}
 
@@ -234,6 +238,15 @@ in
                 colorscheme material
                 set termguicolors
                 lua require'colorizer'.setup()
+                "haskell
+                let g:stylishask_on_save = 1
+                let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+                let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+                let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+                let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+                let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+                let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+                let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
                 "cosco.vim
                 let g:cosco_ignore_comment_lines = 1
@@ -300,7 +313,7 @@ in
                 set signcolumn=yes
                 inoremap <silent><expr> <c-space> coc#refresh()
                 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-                nnoremap <leader> F :call CocAction('format')<CR>          " leader shift f
+                nnoremap <leader><S-f>  :call CocAction('format')<CR>          " leader shift f
                 nmap <leader>qf <Plug>(coc-fix-current)
                 nmap <silent> [g <Plug>(coc-diagnostic-prev)
                 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -353,7 +366,8 @@ in
     # generate dotfiles{{{
     home.file = {
 
-    ".xmonad/xmonad.hs".source = ../xmonad/xmonad.hs;
+    #".xmonad/xmonad.hs".source = ../xmonad/xmonad.hs;
+    ".xmobarrc".source = ../xmonad/xmobar.hs;
 
     # kitty{{{
     ".config/kitty/kitty.conf".text = ''
@@ -394,7 +408,7 @@ in
         disable_ligatures never
         cursor #fefefe
         window_padding_width 4
-        background_opacity 1
+        background_opacity 0.8
     '';
     #}}}
 
@@ -794,9 +808,16 @@ in
                 "hs",
                 "lhs",
                 "haskell"
-            ]
+            ],
+            "settings": {
+                "languageServerHaskell": {
+                    "hlintOn": true,
+                    "maxNumberOfProblems": 10,
+                    "completionSnippetsOn": true
+                    }
             }
-        },
+            }
+        }
     }
     '';
         ##haskell-language-server
@@ -831,7 +852,7 @@ in
             info "Uptime" uptime
             info "Packages" packages
             info "Shell" shell
-            info "WM" wm
+            info "DE" de
             info "Terminal" term
             info "CPU" cpu
             info "Memory" memory
@@ -902,6 +923,7 @@ in
         windowManager.xmonad = {
             enable = true;
             enableContribAndExtras = true;
+            config = ../xmonad/xmonad.hs;
             haskellPackages =
                 unstable.haskell.packages.ghc882;
             extraPackages = haskellPackages: [
