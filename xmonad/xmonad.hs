@@ -3,6 +3,7 @@ import           Data.Monoid
 import           System.Exit
 import           XMonad
 import           XMonad.Hooks.ManageDocks
+import           XMonad.Layout.Spacing
 import           XMonad.Util.Run
 import           XMonad.Util.SpawnOnce
 
@@ -22,18 +23,17 @@ myFocusedBorderColor = "#f07178"
 
 myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
 
-    [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-    , ((modm,               xK_p     ), spawn "dmenu_run")
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    [ ((modm,               xK_Return), spawn $ XMonad.terminal conf)
+    , ((modm,               xK_d     ), spawn "dmenu_run")
+    , ((modm,               xK_b     ), spawn "qutebrowser")
     , ((modm .|. shiftMask, xK_c     ), kill)
     , ((modm,               xK_space ), sendMessage NextLayout)
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
     , ((modm,               xK_n     ), refresh)
-    , ((modm,               xK_Tab   ), windows W.focusDown)
     , ((modm,               xK_j     ), windows W.focusDown)
     , ((modm,               xK_k     ), windows W.focusUp  )
-    , ((modm,               xK_m     ), windows W.focusMaster  )
-    , ((modm,               xK_Return), windows W.swapMaster)
+    , ((modm,               xK_m     ), windows W.focusMaster)
+    , ((modm .|. shiftMask, xK_m     ), windows W.swapMaster)
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
     , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
     , ((modm,               xK_h     ), sendMessage Shrink)
@@ -66,9 +66,9 @@ myMouseBindings XConfig {XMonad.modMask = modm} = M.fromList $
     ]
 
 myLayout = avoidStruts(tiled ||| Mirror tiled ||| Full)
-  where
+    where
      -- default tiling algorithm partitions the screen into two panes
-     tiled   = Tall nmaster delta ratio
+     tiled   = spacingRaw True (Border 6 6 6 6) True (Border 6 6 6 6) True $ Tall nmaster delta ratio
 
      -- The default number of windows in the master pane
      nmaster = 1
@@ -78,6 +78,7 @@ myLayout = avoidStruts(tiled ||| Mirror tiled ||| Full)
 
      -- Percent of screen to increment by when resizing panes
      delta   = 3/100
+
 
 myManageHook = composeAll
     [ className =? "Gimp"           --> doFloat

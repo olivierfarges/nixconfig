@@ -424,6 +424,7 @@ in
         cursor #fefefe
         window_padding_width 4
         background_opacity 0.8
+        symbol_map U+E000-U+FFFF Monoid Nerd Font # Fixes Nerd Font glyph small size issue.
     '';
     #}}}
 
@@ -1007,6 +1008,12 @@ in
                 '';
         };
 # }}}
+
+    pointerCursor = {
+        package = pkgs.capitaine-cursors;
+        name = "capitaine-cursors";
+        size = 16;
+    };
 
 
     };/*}}}*/
