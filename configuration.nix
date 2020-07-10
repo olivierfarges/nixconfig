@@ -146,7 +146,7 @@ in
     # Define a user account. Don't forget to set a password with ‘passwd’.{{{
     users.users.btw = {
         isNormalUser = true;
-        extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+        extraGroups = [ "wheel" "input" ]; # Enable ‘sudo’ for the user.
         shell = pkgs.fish;
     };
     security.sudo.enable = true;# }}}
@@ -158,6 +158,8 @@ in
         MatchProduct "Wacom Bamboo 16FG 4x5 Finger"
         Driver "wacom"
         Option "Rotate" "Half"
+        Option "AccelerationProfile" "-1"
+        Option "AccelerationThreshold" "0.1"
     EndSection
     '';
 # }}}

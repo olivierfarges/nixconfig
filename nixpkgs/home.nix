@@ -56,6 +56,8 @@ in
         haskell-env
         xmobar
         unstable.picom
+        unstable.libinput-gestures
+        unstable.xdotool
         #misc
         cowsay cmatrix espeak figlet
     ];
@@ -128,7 +130,7 @@ in
             };
 # }}}
 
-            #plugins
+            #plugins{{{
             plugins =
                 [
                     {
@@ -163,11 +165,13 @@ in
                         };
                     }
                 ];
+            # }}}
 
             interactiveShellInit =
             ''
                 fish_vi_key_bindings
                 set fish_greeting
+                set PAGER 'nvim +Man!'
             '';
 
         };
