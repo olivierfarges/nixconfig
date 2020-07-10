@@ -375,17 +375,19 @@ in
         };
         #}}}
 
-    };
-    #}}}
+    #kitty{{{
+    kitty = {
+        enable = true;
+        settings = {
+            font_size = 8;
+            disable_ligatures = "never";    
+            window_padding_width = 4;
+            background_opacity = "0.8";
+        };
 
-    # generate dotfiles{{{
-    home.file = {
+        font.name = "Monoid Nerd Font Mono";
 
-    #".xmonad/xmonad.hs".source = ../xmonad/xmonad.hs;
-    ".xmobarrc".source = ../xmonad/xmobar.hs;
-
-    # kitty{{{
-    ".config/kitty/kitty.conf".text = ''
+        extraConfig = ''
         # Palenight Colorscheme{{{
         # https://github.com/citizen428/kitty-palenight
         foreground           #959dcb
@@ -418,15 +420,21 @@ in
         color7   #d0d0d0
         color15  #fefefe
         #}}}
-        font_family Monoid Nerd Font Mono
-        font_size 8
-        disable_ligatures never
         cursor #fefefe
-        window_padding_width 4
-        background_opacity 0.8
-        symbol_map U+E000-U+FFFF Monoid Nerd Font # Fixes Nerd Font glyph small size issue.
-    '';
+        symbol_map U+E000-U+FFFF Monoid Nerd Font
+        # symbol_map above Fixes Nerd Font glyph small size issue.
+        '';
+    };
+    # }}}
+
+    };
     #}}}
+
+    # generate dotfiles{{{
+    home.file = {
+
+    #".xmonad/xmonad.hs".source = ../xmonad/xmonad.hs;
+    ".xmobarrc".source = ../xmonad/xmobar.hs;
 
     # qutebrowser{{{
     ".config/qutebrowser/config.py".text = 

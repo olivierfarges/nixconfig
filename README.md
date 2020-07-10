@@ -10,3 +10,5 @@
 
 <br>
 <h1 align="center">NixOS config files</h1>
+
+note: this repo is a personally backup.
