@@ -17,6 +17,7 @@ let
         stylish-haskell
         cabal-install
         hlint
+        xmobar
     ]);
 
 in
@@ -54,7 +55,6 @@ in
         glxinfo
         glibc
         haskell-env
-        xmobar
         unstable.picom
         unstable.libinput-gestures
         unstable.xdotool
@@ -434,7 +434,7 @@ in
     home.file = {
 
     #".xmonad/xmonad.hs".source = ../xmonad/xmonad.hs;
-    ".xmobarrc".source = ../xmonad/xmobar.hs;
+    ".xmonad/xmobar.hs".source = ../xmonad/xmobar.hs;
 
     # qutebrowser{{{
     ".config/qutebrowser/config.py".text = 

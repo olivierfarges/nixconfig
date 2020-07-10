@@ -92,7 +92,7 @@ myStartupHook = do
     spawnOnce "picom &"
 
 main = do
-    xmproc <- spawnPipe "xmobar"
+    xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
 
     xmonad $ docks def {
       -- simple stuff
