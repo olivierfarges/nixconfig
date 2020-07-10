@@ -919,6 +919,28 @@ in
     '';
 # }}}
 
+    #ranger{{{
+    ".config/ranger/rc.conf".text = ''
+        set show_hidden true
+        set confirm_on_delete always
+        set preview_images true
+        set preview_images_method kitty
+        set wrap_plaintext_previews true
+        set draw_borders both
+        set dirname_in_tabs true
+        default_linemode devicons
+    '';
+    # }}}
+
+    #ranger plugins{{{
+    ".config/ranger/plugins/ranger_devicons".source = pkgs.fetchFromGitHub {
+        owner = "alexanderjeurissen";
+        repo = "ranger_devicons";
+        rev = "86a0810e744d33278d5dd74f57336c066a806c9d";
+        sha256 = "0vhnvmcv5qq8hnxpzvq47cls0pax84ar9rzw9pxzliabfs6fy3g2";
+    };
+    # }}}
+
     # Give highest priority to apple emoji {{{
     ".config/fontconfig/conf.d/10-prefer-emoji.conf".text = ''
         <?xml version="1.0"?>
@@ -933,8 +955,10 @@ in
     '';
 # }}}
 
+
     };
     #}}}
+
 
     #xsession{{{
     xsession = {
@@ -1044,6 +1068,8 @@ in
 
     nixpkgs.config.allowUnfree = true;
     #}}}
+
+    nixpkgs.overlays = [ (import ../overlays/packages.nix) ];
 
 }
 # vim:ft=nix foldmethod=marker shiftwidth=4:
