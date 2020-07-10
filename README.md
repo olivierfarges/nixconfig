@@ -11,5 +11,5 @@
 <br>
 <h1 align="center">NixOS config files</h1>
 
-note: this repo is a personally backup.
+note: this repo is a personally backup.<br>
 I try to install packages/manage config files declarative using <code>configuration.nix</code> and <code>home.nix</code> as much as possible.
