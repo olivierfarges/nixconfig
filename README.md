@@ -1,3 +1,3 @@
-![Build Status](https://github.com/btwiusegentoo/nixconfig/workflows/test/badge.svg)
-> home-manager + xmonad + neovim💛
+<p align="center">```home-manager + xmonad + neovim💛```</p>
+
 # NixOS config files
