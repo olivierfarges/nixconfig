@@ -87,7 +87,7 @@ myEventHook = mempty
 myLogHook = return ()
 
 myStartupHook = do
-    spawnOnce "nitrogen -- restore &"
+    spawnOnce "feh --bg-fill ~/Pictures/nix-wallpaper-dracula.png"
     spawnOnce "picom &"
 
 main = do

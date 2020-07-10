@@ -97,7 +97,7 @@ in
 
     # }}}
 
-    # List services that you want to enable:{{{
+    # services{{{
 
     # Enable the OpenSSH daemon.
     services.openssh.enable = true;
@@ -150,6 +150,17 @@ in
         shell = pkgs.fish;
     };
     security.sudo.enable = true;# }}}
+
+    #etcfiles{{{
+    environment.etc."X11/xorg.conf.d/50-wacomtweak.conf".text = ''
+    Section "InputClass" 
+        Identifier "Wacom"
+        MatchProduct "Wacom Bamboo 16FG 4x5 Finger"
+        Driver "wacom"
+        Option "Rotate" "Half"
+    EndSection
+    '';
+# }}}
 
     nixpkgs.config = {
         allowUnfree = true;

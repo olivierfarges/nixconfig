@@ -26,7 +26,7 @@ in
 
     # Packages to install{{{
     home.packages = with pkgs; [
-        nitrogen
+        feh
         dmenu
         htop
         ranger
