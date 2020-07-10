@@ -27,8 +27,8 @@ in
         sudo
         git
         unstable.neovim
-        nodejs
-        yarn
+        unstable.nodejs
+        unstable.yarn
         unzip
         home-manager
         fish

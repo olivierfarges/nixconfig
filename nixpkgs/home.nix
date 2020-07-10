@@ -212,14 +212,13 @@ in
                 coc-prettier
                 coc-html
                 coc-pairs
-                coc-discord-neovim
                 indenthaskell
                 vim-stylishask
                 haskell-vim
             ]; #}}}
 
             configure.customRC = '' "{{{
-                let g:coc_global_extensions = ['coc-python', 'coc-syntax', 'coc-emoji']
+                let g:coc_global_extensions = ['coc-python', 'coc-syntax', 'coc-emoji', 'coc-discord-neovim']
                 set modelines=5
                 syntax enable
                 filetype plugin on
