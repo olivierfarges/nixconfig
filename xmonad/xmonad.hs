@@ -90,6 +90,7 @@ myLogHook = return ()
 myStartupHook = do
     spawnOnce "feh --bg-fill ~/Pictures/nix-wallpaper-dracula.png"
     spawnOnce "picom &"
+    spawnOnce "fcitx &"
 
 main = do
     xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"

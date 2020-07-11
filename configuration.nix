@@ -83,17 +83,25 @@ in
     /*}}}*/
 
     # Select internationalisation properties.{{{
-    # i18n.defaultLocale = "en_US.UTF-8";
+    i18n.defaultLocale = "en_US.UTF-8";
     console = {
         font = "Lat2-Terminus16";
         keyMap = "dvorak";
     };
 
+    i18n.inputMethod.enabled = "fcitx";
+    i18n.inputMethod.fcitx.engines = with pkgs.fcitx-engines; [ mozc ];
+
     # Set your time zone.
     time.timeZone = "Asia/Tokyo";# }}}
 
-    # Use neovim as default editor{{{
-    environment.variables.EDITOR = "nvim";
+    # set global environment variables {{{
+    environment.variables = {
+        EDITOR = "nvim";
+        XMODIFIERS = "@im=fcitx";
+        XMODIFIER = "@im=fcitx";
+        PAGER = "nvim +Man!";
+    };
 
     # }}}
 

@@ -42,6 +42,7 @@ in
         binutils
         killall
         discord
+        unstable.tdesktop
         git
         pavucontrol
         python
@@ -58,6 +59,7 @@ in
         unstable.picom
         unstable.libinput-gestures
         unstable.xdotool
+        scrot
         #misc
         cowsay cmatrix espeak figlet
     ];
@@ -127,6 +129,8 @@ in
                 "cnix" = "nvim ~/mygit/nixconfig/configuration.nix";
                 "cmonad" = "nvim ~/mygit/nixconfig/xmonad/xmonad.hs";
                 "cmobar" = "nvim ~/mygit/nixconfig/xmonad/xmobar.hs";
+                #screenshot
+                "scrotclip" = "scrot -s ~/tmp.png && xclip -selection clipboard -t image/png -i ~/tmp.png && rm ~/tmp.png";
             };
 # }}}
 
@@ -171,7 +175,6 @@ in
             ''
                 fish_vi_key_bindings
                 set fish_greeting
-                set PAGER 'nvim +Man!'
             '';
 
         };
@@ -957,7 +960,6 @@ in
 
     };
     #}}}
-
 
     #xsession{{{
     xsession = {
